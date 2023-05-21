@@ -20,7 +20,7 @@ public class AbstractSoapServer<T> extends AbstractServer {
 	final T webservice;
 
 	protected AbstractSoapServer( boolean enableSoapDebug, Logger log, String service, int port, T webservice) {
-		super(log, service, String.format(SERVER_BASE_URI, IP.hostAddress(), port, SOAP_CTX));
+		super(log, service, String.format(SERVER_BASE_URI, IP.hostName(), port, SOAP_CTX));
 		this.webservice = webservice;
 	}
 

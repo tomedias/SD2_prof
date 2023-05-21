@@ -1,62 +1,62 @@
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\java\JavaFeedsPullPreconditions.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\discovery\Discovery.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\Domain.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\User.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\rest\GenericExceptionMapper.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\java\FeedsPull.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\rest\RestFeedsPushClient.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\soap\SoapFeedsPullWebService.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\soap\push\FeedsService.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\rest\RestFeedsResource.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\Clients.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\soap\SoapUsersClient.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\rest\RestFeedsPushResource.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\soap\FeedsService.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\soap\SoapClient.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\soap\UsersException.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\java\AbstractServer.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\java\Result.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\soap\SoapWebService.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\soap\SoapUsersServer.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\soap\SoapFeedsServer.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\utils\Sleep.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\rest\FeedsService.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\java\Feeds.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\soap\SoapUsersWebService.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\rest\UsersService.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\soap\SoapFeedsClient.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\rest\FeedsServicePush.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\rest\RestUsersClient.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\java\JavaFeedsPush.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\soap\FeedsException.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\utils\Args.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\utils\IP.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\tls\InsecureHostnameVerifier.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\PushMessage.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\soap\pull\FeedsService.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\rest\RestFeedsClient.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\rest\RestFeedsPullClient.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\Message.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\rest\AbstractRestServer.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\rest\RestUsersServer.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\rest\RestFeedsPullResource.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\java\FeedsPush.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\java\JavaFeedsPushPreconditions.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\soap\SoapFeedsPushWebService.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\rest\RestFeedsServer.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\soap\UsersService.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\soap\SoapFeedsPushClient.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\java\Users.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\rest\RestClient.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\soap\AbstractSoapServer.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\rest\RestResource.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\rest\CustomLoggingFilter.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\java\JavaUsers.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\rest\RestUsersResource.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\ClientFactory.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\clients\soap\SoapFeedsPullClient.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\api\rest\FeedsServicePull.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\java\JavaFeedsPull.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\java\JavaFeedsCommon.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\java\JavaFeedsPreconditions.java
-C:\Users\tomed\Desktop\sd2223-trab1-main\src\sd2223\trab1\servers\soap\SoapFeedsWebService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\soap\SoapFeedsWebService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\java\FeedsPull.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestResource.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\java\Result.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaFeedsPreconditions.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\rest\RestFeedsPullClient.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestUsersServer.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\soap\UsersException.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\soap\SoapFeedsPushClient.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaFeedsCommon.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\rest\FeedsServicePull.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaFeedsPushPreconditions.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\soap\SoapClient.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\Message.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\discovery\Discovery.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestFeedsPushResource.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\ClientFactory.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\AbstractServer.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\rest\RestFeedsClient.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\GenericExceptionMapper.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaFeedsPull.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\CustomLoggingFilter.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\soap\FeedsException.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\soap\SoapFeedsPullClient.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaFeedsPullPreconditions.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestFeedsServer.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\rest\RestClient.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\rest\RestFeedsPushClient.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\soap\push\FeedsService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\soap\SoapFeedsClient.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\soap\SoapWebService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\rest\FeedsService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaFeedsPush.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\soap\SoapFeedsServer.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\utils\IP.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\soap\SoapUsersServer.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\java\FeedsPush.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\Domain.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\AbstractRestServer.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\utils\Sleep.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\soap\FeedsService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\utils\Args.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestUsersResource.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestFeedsResource.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\PushMessage.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\rest\UsersService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\soap\UsersService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\rest\FeedsServicePush.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\rest\RestUsersClient.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestFeedsPullResource.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\java\Feeds.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\soap\pull\FeedsService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\tls\InsecureHostnameVerifier.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\User.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaUsers.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\soap\SoapFeedsPullWebService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\soap\SoapFeedsPushWebService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\Clients.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\soap\AbstractSoapServer.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\java\Users.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\soap\SoapUsersWebService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\soap\SoapUsersClient.java
