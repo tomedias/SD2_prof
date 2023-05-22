@@ -3,6 +3,7 @@ package sd2223.trab1.servers.soap;
 import java.util.function.Function;
 
 import sd2223.trab1.api.java.Result;
+import sd2223.trab1.api.java.Result.ErrorCode;
 
 public abstract class SoapWebService<E extends Throwable> {
 	
@@ -19,7 +20,8 @@ public abstract class SoapWebService<E extends Throwable> {
 	<T> T fromJavaResult(Result<T> result) throws E {
 		if (result.isOK())
 			return result.value();
-		else
-			throw exceptionMapper.apply(result);
+		if((result.error() == ErrorCode.REDIRECTED ))
+			return result.value();
+		else throw exceptionMapper.apply(result);
 	}
 }
