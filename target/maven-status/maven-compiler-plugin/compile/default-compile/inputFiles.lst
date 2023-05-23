@@ -1,4 +1,5 @@
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\soap\SoapFeedsWebService.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\utils\JSON.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\java\FeedsPull.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestResource.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\java\Result.java
@@ -6,6 +7,7 @@ C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaFeeds
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\rest\RestFeedsPullClient.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestUsersServer.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\soap\UsersException.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\proxy\msgs\PostStatusResult.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\soap\SoapFeedsPushClient.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaFeedsCommon.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\rest\FeedsServicePull.java
@@ -16,14 +18,19 @@ C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\discovery\Discovery.ja
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestFeedsPushResource.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\ClientFactory.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\AbstractServer.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\proxy\MastodonApi.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\rest\RestFeedsClient.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\GenericExceptionMapper.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaFeedsPull.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\proxy\Mastodon.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\CustomLoggingFilter.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\soap\FeedsException.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\soap\SoapFeedsPullClient.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\proxy\msgs\PostStatusArgs.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\java\JavaFeedsPullPreconditions.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\proxy\msgs\PostSubArgs.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\rest\RestFeedsServer.java
+C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\servers\proxy\msgs\MastodonAccount.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\rest\RestClient.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\clients\rest\RestFeedsPushClient.java
 C:\Users\Tomé Dias\IdeaProjects\SD2_prof\src\sd2223\trab1\api\soap\push\FeedsService.java
