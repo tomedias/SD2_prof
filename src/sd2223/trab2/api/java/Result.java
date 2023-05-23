@@ -16,9 +16,9 @@ public interface Result<T> {
 	 * @author smd
 	 *
 	 * Service errors:
-	 * OK - no error, implies a non-null result of type T, except for for Void operations
+	 * OK - no error, implies a non-null result of type T, except for Void operations
 	 * CONFLICT - something is being created but already exists
-	 * NOT_FOUND - an access occurred to something that does not exist
+	 * NOT_FOUND - access occurred to something that does not exist
 	 * INTERNAL_ERROR - something unexpected happened
 	 */
 	enum ErrorCode{ OK, CONFLICT, NOT_FOUND, BAD_REQUEST, FORBIDDEN, INTERNAL_ERROR, REDIRECTED, NOT_IMPLEMENTED, TIMEOUT, NO_CONTENT};
@@ -82,7 +82,7 @@ public interface Result<T> {
 	}
 	
 	/**
-	 * Convenience method used to return an redirect result 
+	 * Convenience method used to return a redirect result
 	 * @return
 	 */
 	static <T> Result<T> redirected(Result<T> res) {

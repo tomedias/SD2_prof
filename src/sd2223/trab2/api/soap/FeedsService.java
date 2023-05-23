@@ -82,7 +82,7 @@ public interface FeedsService {
 	void subUser(String user, String userSub, String pwd) throws FeedsException;
 
 	/**
-	 * UnSubscribe a user
+	 * UnSubscribe user
 	 * A user must contact the server of her domain directly (i.e., this operation should not be
 	 * propagated to other domain)
 	 *
