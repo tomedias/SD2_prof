@@ -2,11 +2,9 @@ package sd2223.trab2.clients;
 
 import sd2223.trab2.api.java.Feeds;
 import sd2223.trab2.api.java.FeedsPull;
-import sd2223.trab2.api.java.FeedsPush;
 import sd2223.trab2.api.java.Users;
 import sd2223.trab2.clients.rest.RestFeedsClient;
 import sd2223.trab2.clients.rest.RestFeedsPullClient;
-import sd2223.trab2.clients.rest.RestFeedsPushClient;
 import sd2223.trab2.clients.rest.RestUsersClient;
 import sd2223.trab2.clients.soap.SoapFeedsClient;
 import sd2223.trab2.clients.soap.SoapFeedsPullClient;

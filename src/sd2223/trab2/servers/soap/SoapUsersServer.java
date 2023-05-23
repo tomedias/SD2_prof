@@ -13,7 +13,7 @@ public class SoapUsersServer extends AbstractSoapServer<SoapUsersWebService> {
 	private static Logger Log = Logger.getLogger(SoapUsersServer.class.getName());
 
 	protected SoapUsersServer() {
-		super(false, Log, Users.SERVICENAME, PORT,  new SoapUsersWebService() );
+		super(Log, Users.SERVICENAME, PORT,  new SoapUsersWebService() );
 	}
 
 	public static void main(String[] args) throws Exception {		
