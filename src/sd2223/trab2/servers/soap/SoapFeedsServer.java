@@ -13,7 +13,7 @@ public class SoapFeedsServer extends AbstractSoapServer<SoapFeedsWebService<?>> 
 	private static Logger Log = Logger.getLogger(SoapFeedsServer.class.getName());
 
 	protected SoapFeedsServer() {
-		super(false, Log, Feeds.SERVICENAME, PORT,  Args.valueOf("-push", true) ? new SoapFeedsPushWebService() : new SoapFeedsPullWebService() );
+		super(false, Log, Feeds.SERVICENAME, PORT, new SoapFeedsPullWebService() );
 	}
 
 	public static void main(String[] args) throws Exception {

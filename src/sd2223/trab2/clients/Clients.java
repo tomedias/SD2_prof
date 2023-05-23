@@ -10,7 +10,6 @@ import sd2223.trab2.clients.rest.RestFeedsPushClient;
 import sd2223.trab2.clients.rest.RestUsersClient;
 import sd2223.trab2.clients.soap.SoapFeedsClient;
 import sd2223.trab2.clients.soap.SoapFeedsPullClient;
-import sd2223.trab2.clients.soap.SoapFeedsPushClient;
 import sd2223.trab2.clients.soap.SoapUsersClient;
 
 public class Clients {
@@ -18,7 +17,5 @@ public class Clients {
 	
 	public static final ClientFactory<FeedsPull> FeedsPullClients = new ClientFactory<>(Feeds.SERVICENAME, RestFeedsPullClient::new, SoapFeedsPullClient::new);
 
-	public static final ClientFactory<FeedsPush> FeedsPushClients = new ClientFactory<>(Feeds.SERVICENAME, RestFeedsPushClient::new, SoapFeedsPushClient::new);	
-	
 	public static final ClientFactory<Feeds> FeedsClients = new ClientFactory<>(Feeds.SERVICENAME, RestFeedsClient::new, SoapFeedsClient::new) ; 
 }
