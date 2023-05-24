@@ -12,9 +12,10 @@ import java.util.logging.Logger;
 public class ProxyFeedsServer extends AbstractRestServer{
 
     public static final int PORT = 3000;
+     public static final String SERVICE = "proxy";
     private static Logger Log = Logger.getLogger(ProxyFeedsServer.class.getName());
     protected ProxyFeedsServer() {
-        super( Log, Feeds.SERVICENAME, PORT);
+        super( Log, SERVICE, PORT);
     }
 
     @Override
