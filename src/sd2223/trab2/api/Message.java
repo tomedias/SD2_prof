@@ -66,15 +66,15 @@ public class Message {
 		this.text = text;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Message [id=" + id + ", user=" + user + ", domain=" + domain + ", creationTime=" + creationTime
-//				+ ", text=" + text + "]";
-//	}
-	
 	@Override
 	public String toString() {
-		return "Msg[" + id + "]";
+		return "Message [id=" + id + ", user=" + user + ", domain=" + domain + ", creationTime=" + creationTime
+				+ ", text=" + text + "]";
 	}
+	
+	//@Override
+	//public String toString() {
+		//return "Msg[" + id + "]";
+	//}
 
 }
