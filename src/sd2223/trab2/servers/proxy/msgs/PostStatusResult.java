@@ -7,17 +7,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public record PostStatusResult(String id, String content, String created_at, MastodonAccount account) {
-	
+
+
+	public static final String PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
 	public long getId() {
 		return Long.valueOf(id);
 	}
 	
 	long getCreationTime()  {
 		try{
-			SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-			long x = isoFormat.parse(created_at).getTime();
-			return x;
-
+			SimpleDateFormat isoFormat = new SimpleDateFormat(PATTERN);
+			return isoFormat.parse(created_at).getTime();
 		}catch (Exception e){
 			return 0;
 		}

@@ -1,11 +1,9 @@
 package sd2223.trab2.servers.proxy;
 
 import com.google.gson.reflect.TypeToken;
-import jakarta.inject.Singleton;
 import sd2223.trab2.api.Message;
 import sd2223.trab2.api.java.Feeds;
 import sd2223.trab2.api.java.Result;
-import sd2223.trab2.servers.Domain;
 import sd2223.trab2.servers.proxy.msgs.MastodonAccount;
 import sd2223.trab2.servers.proxy.msgs.PostStatusArgs;
 import sd2223.trab2.servers.proxy.msgs.PostStatusResult;
@@ -53,17 +51,11 @@ public class Mastodon implements Feeds {
 
     private static Mastodon impl;
 
-
-    private long currentTime;
-
-
     protected Mastodon() {
         try {
             service = new ServiceBuilder(clientKey).apiSecret(clientSecret).build(MastodonApi.instance());
             accessToken = new OAuth2AccessToken(accessTokenStr);
-            System.out.println("done");
         } catch (Exception x) {
-            System.out.println("error");
             x.printStackTrace();
             System.exit(0);
         }
@@ -82,7 +74,6 @@ public class Mastodon implements Feeds {
 
     @Override
     public Result<Long> postMessage(String user, String pwd, Message msg) {
-        System.out.println("entered");
         try {
             final OAuthRequest request = new OAuthRequest(Verb.POST, getEndpoint(STATUSES_PATH));
 
@@ -95,7 +86,6 @@ public class Mastodon implements Feeds {
             Response response = service.execute(request);
             if (response.getCode() == HTTP_OK) {
                 var res = JSON.decode(response.getBody(), PostStatusResult.class);
-                System.out.println("got it, res " + res.getId());
                 return ok(res.getId());
             }
         } catch (Exception x) {
@@ -146,7 +136,6 @@ public class Mastodon implements Feeds {
 
     @Override
     public Result<Message> getMessage(String user, long mid) {
-        System.out.println("entered get");
         try {
             final OAuthRequest request = new OAuthRequest(Verb.GET, getEndpoint(STATUSES_PATH_ID,mid));
 
@@ -154,13 +143,10 @@ public class Mastodon implements Feeds {
 
             Response response = service.execute(request);
 
-            System.out.println("got response");
             if (response.getCode() == HTTP_OK) {
-                System.out.println("its ok");
                 PostStatusResult res = JSON.decode(response.getBody(), new TypeToken<PostStatusResult>() {
                 });
 
-                System.out.println("got response ok");
                 return ok(res.toMessage());
             }else
                 return response.getCode() == HTTP_NOT_FOUND ? error(NOT_FOUND) : error(INTERNAL_ERROR);
@@ -245,8 +231,6 @@ public class Mastodon implements Feeds {
             if (response.getCode() == HTTP_OK) {
                 List<MastodonAccount> res = JSON.decode(response.getBody(), new TypeToken<List<MastodonAccount>>() {
                 });
-                System.out.println("got responde with user");
-                System.out.println("the id? " + res.get(0).id());
                 return res.get(0).id();
             }
         } catch (Exception x) {
