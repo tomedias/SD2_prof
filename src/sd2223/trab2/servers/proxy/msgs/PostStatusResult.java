@@ -2,8 +2,6 @@ package sd2223.trab2.servers.proxy.msgs;
 
 import sd2223.trab2.api.Message;
 import sd2223.trab2.servers.Domain;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public record PostStatusResult(String id, String content, String created_at, MastodonAccount account) {

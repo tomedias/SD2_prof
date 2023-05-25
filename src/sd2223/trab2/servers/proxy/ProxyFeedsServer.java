@@ -1,10 +1,8 @@
 package sd2223.trab2.servers.proxy;
 
 import org.glassfish.jersey.server.ResourceConfig;
-import sd2223.trab2.api.java.Feeds;
 import sd2223.trab2.servers.Domain;
 import sd2223.trab2.servers.rest.AbstractRestServer;
-import sd2223.trab2.servers.rest.RestResource;
 import utils.Args;
 
 import java.util.logging.Logger;
