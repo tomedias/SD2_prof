@@ -10,8 +10,6 @@ import static sd2223.trab2.api.java.Result.ErrorCode.*;
 import static sd2223.trab2.api.java.Result.error;
 import static sd2223.trab2.api.java.Result.ok;
 
-
-
 public class JavaFeedsRep extends JavaFeedsPull{
 
     static final String TOPIC = "topic";
@@ -20,11 +18,6 @@ public class JavaFeedsRep extends JavaFeedsPull{
 
     final KafkaPublisher publisher;
     static final String FROM_BEGINNING = "earliest";
-
-
-
-
-
 
     public JavaFeedsRep(){
         super();
@@ -41,22 +34,19 @@ public class JavaFeedsRep extends JavaFeedsPull{
     }
 
     public void startKafka(){
-
-                KafkaSubscriber subscriber = KafkaSubscriber.createSubscriber(JavaFeedsRep.KAFKA_BROKERS, List.of(JavaFeedsRep.TOPIC), JavaFeedsRep.FROM_BEGINNING);
-                subscriber.start(false, (r) -> {
-                    String[] command = r.value().split(" ");
-                    switch (command[0]) {
-                        case "postMessage" -> __PostMessage(command[1], JSON.decode(command[3], Message.class));
-                        case "removeFromPersonalFeed" ->
-                                __RemoveFromPersonalFeed(command[1], Long.parseLong(command[2]));
-                        case "subUser" -> __SubUser(command[1], command[2]);
-                        case "unsubscribeUser" -> __UnsubscribeUser(command[1], command[2]);
-                        case "deleteUserFeed" -> __DeleteUserFeed(command[1]);
-                        default -> System.err.println("Unknown command: " + command[0]);
-                    }
-                });
-
-
+        KafkaSubscriber subscriber = KafkaSubscriber.createSubscriber(JavaFeedsRep.KAFKA_BROKERS, List.of(JavaFeedsRep.TOPIC), JavaFeedsRep.FROM_BEGINNING);
+        subscriber.start(false, (r) -> {
+            String[] command = r.value().split(" ");
+            switch (command[0]) {
+                case "postMessage" -> __PostMessage(command[1], JSON.decode(command[3], Message.class));
+                case "removeFromPersonalFeed" ->
+                        __RemoveFromPersonalFeed(command[1], Long.parseLong(command[2]));
+                case "subUser" -> __SubUser(command[1], command[2]);
+                case "unsubscribeUser" -> __UnsubscribeUser(command[1], command[2]);
+                case "deleteUserFeed" -> __DeleteUserFeed(command[1]);
+                default -> System.err.println("Unknown command: " + command[0]);
+            }
+        });
     }
 
     private long send( String msg) {
@@ -68,7 +58,6 @@ public class JavaFeedsRep extends JavaFeedsPull{
         return offset;
 
     }
-
 
     @Override
     public Result<Long> postMessage(String user, String pwd, Message msg) {
@@ -119,8 +108,6 @@ public class JavaFeedsRep extends JavaFeedsPull{
         return ok();
     }
 
-
-
     @Override
     public Result<Void> deleteUserFeed(String user) {
         var preconditionsResult = preconditions.deleteUserFeed(user);
@@ -132,8 +119,7 @@ public class JavaFeedsRep extends JavaFeedsPull{
         return ok();
     }
 
-
-    public void __PostMessage(String user, Message msg) {
+    private void __PostMessage(String user, Message msg) {
         System.out.println("postMessage " + user + " " + msg);
         FeedInfo ufi = feeds.computeIfAbsent(user, FeedInfo::new );
         synchronized (ufi.user()) {
@@ -142,7 +128,7 @@ public class JavaFeedsRep extends JavaFeedsPull{
         }
     }
 
-    public void __RemoveFromPersonalFeed(String user, long mid) {
+    private void __RemoveFromPersonalFeed(String user, long mid) {
         var ufi = feeds.get(user);
         synchronized (ufi.user()) {
             ufi.messages().remove(mid);
@@ -150,8 +136,7 @@ public class JavaFeedsRep extends JavaFeedsPull{
         deleteFromUserFeed( user, Set.of(mid) );
     }
 
-
-    public void __SubUser(String user, String userSub) {
+    private void __SubUser(String user, String userSub) {
         var ufi = feeds.computeIfAbsent(user, FeedInfo::new );
         synchronized (ufi.user()) {
             ufi.following().add(userSub);
@@ -159,7 +144,7 @@ public class JavaFeedsRep extends JavaFeedsPull{
 
     }
 
-    public void __UnsubscribeUser(String user, String userSub) {
+    private void __UnsubscribeUser(String user, String userSub) {
         FeedInfo ufi = feeds.computeIfAbsent(user, FeedInfo::new);
         synchronized (ufi.user()) {
             ufi.following().remove(userSub);
@@ -167,8 +152,7 @@ public class JavaFeedsRep extends JavaFeedsPull{
 
     }
 
-
-    public void __DeleteUserFeed(String user) {
+    private void __DeleteUserFeed(String user) {
         FeedInfo ufi = feeds.remove(user);
         synchronized (ufi.user()) {
             deleteFromUserFeed(user, ufi.messages());
@@ -176,7 +160,4 @@ public class JavaFeedsRep extends JavaFeedsPull{
                 ufi.following().remove(u);
         }
     }
-
-
-
 }
