@@ -1,7 +1,6 @@
 package sd2223.trab2.servers.java;
 
 import sd2223.trab2.api.Message;
-import sd2223.trab2.api.java.FeedsPull;
 import sd2223.trab2.api.java.Result;
 import sd2223.trab2.kafka.KafkaPublisher;
 import sd2223.trab2.kafka.KafkaSubscriber;
@@ -20,7 +19,9 @@ public class JavaFeedsRep extends JavaFeedsPull{
     static final String KAFKA_BROKERS = "kafka:9092"; // When running in docker container...
 
     final KafkaPublisher publisher;
-    private static final String FROM_BEGINNING = "earliest";
+    static final String FROM_BEGINNING = "earliest";
+
+
 
 
 
@@ -28,17 +29,43 @@ public class JavaFeedsRep extends JavaFeedsPull{
     public JavaFeedsRep(){
         super();
         publisher = KafkaPublisher.createPublisher(KAFKA_BROKERS);
-        new OrderExecutor(this).start();
+        startKafka();
+        System.out.println("Continue Kafka publisher");
+        //Catch up sleep :3
+        try
+        {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void startKafka(){
+
+                KafkaSubscriber subscriber = KafkaSubscriber.createSubscriber(JavaFeedsRep.KAFKA_BROKERS, List.of(JavaFeedsRep.TOPIC), JavaFeedsRep.FROM_BEGINNING);
+                subscriber.start(false, (r) -> {
+                    String[] command = r.value().split(" ");
+                    switch (command[0]) {
+                        case "postMessage" -> __PostMessage(command[1], JSON.decode(command[3], Message.class));
+                        case "removeFromPersonalFeed" ->
+                                __RemoveFromPersonalFeed(command[1], Long.parseLong(command[2]));
+                        case "subUser" -> __SubUser(command[1], command[2]);
+                        case "unsubscribeUser" -> __UnsubscribeUser(command[1], command[2]);
+                        case "deleteUserFeed" -> __DeleteUserFeed(command[1]);
+                        default -> System.err.println("Unknown command: " + command[0]);
+                    }
+                });
+
 
     }
 
-    private void send( String msg) {
+    private long send( String msg) {
         long offset = publisher.publish(TOPIC, msg);
         if (offset >= 0)
             System.out.println("Message published with sequence number: " + msg);
         else
             System.err.println("Failed to publish message");
-        //return offset;
+        return offset;
 
     }
 
@@ -69,6 +96,7 @@ public class JavaFeedsRep extends JavaFeedsPull{
                 return error(NOT_FOUND);
         }
         send("removeFromPersonalFeed " + user + " " + mid + " " + pwd);
+
 
         return ok();
     }
@@ -106,6 +134,7 @@ public class JavaFeedsRep extends JavaFeedsPull{
 
 
     public void __PostMessage(String user, Message msg) {
+        System.out.println("postMessage " + user + " " + msg);
         FeedInfo ufi = feeds.computeIfAbsent(user, FeedInfo::new );
         synchronized (ufi.user()) {
             ufi.messages().add(msg.getId());
@@ -149,30 +178,5 @@ public class JavaFeedsRep extends JavaFeedsPull{
     }
 
 
-    static class OrderExecutor extends Thread {
-
-        JavaFeedsRep feeds;
-        public OrderExecutor(JavaFeedsRep rep) {
-            this.feeds = rep;
-        }
-
-        public void run() {
-            for(;;) {
-                KafkaSubscriber subscriber = KafkaSubscriber.createSubscriber(KAFKA_BROKERS, List.of(TOPIC), FROM_BEGINNING);
-                subscriber.start(true, (r) -> {
-                    String[] command = r.value().split(" ");
-                    switch (command[0]) {
-                        case "postMessage" -> feeds.__PostMessage(command[1], JSON.decode(command[3], Message.class));
-                        case "removeFromPersonalFeed" ->
-                                feeds.__RemoveFromPersonalFeed(command[1], Long.parseLong(command[2]));
-                        case "subUser" -> feeds.__SubUser(command[1], command[2]);
-                        case "unsubscribeUser" -> feeds.__UnsubscribeUser(command[1], command[2]);
-                        case "deleteUserFeed" -> feeds.__DeleteUserFeed(command[1]);
-                        default -> System.err.println("Unknown command: " + command[0]);
-                    }
-                });
-            }
-        }
-    }
 
 }
