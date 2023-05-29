@@ -42,7 +42,7 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
         publisher = KafkaPublisher.createPublisher(KAFKA_BROKERS);
         this.sync = new SyncPoint<>();
         startKafka();
-        setVersion(send("starting kafka"));
+        setVersion(send("Starting replica " + IP.hostName()));
         sync();
     }
 
@@ -62,14 +62,12 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
         subscriber.start(false, (r) -> {
             String[] command = r.value().split(" ");
             switch (command[0]) {
-                case "postMessage" ->
-                        __PostMessage(command[1], JSON.decode(command[3], Message.class));
-                case "removeFromPersonalFeed" ->
-                        __RemoveFromPersonalFeed(command[1], Long.parseLong(command[2]));
+                case "postMessage" -> __PostMessage(command[1], JSON.decode(command[3], Message.class));
+                case "removeFromPersonalFeed" -> __RemoveFromPersonalFeed(command[1], Long.parseLong(command[2]));
                 case "subUser" -> __SubUser(command[1], command[2]);
                 case "unsubscribeUser" -> __UnsubscribeUser(command[1], command[2]);
                 case "deleteUserFeed" -> __DeleteUserFeed(command[1]);
-                default -> System.out.println("Starting replica " + IP.hostName());
+                default -> System.out.println(r.value());
             }
             sync.setVersion(r.offset());
         });
@@ -141,7 +139,7 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
     @Override
     public Result<Long> postMessage(String user, String pwd, Message msg) {
-        sync();
+        //sync();
         var preconditionsResult = preconditions.postMessage(user, pwd,msg);
         if( ! preconditionsResult.isOK() )
             return preconditionsResult;
@@ -155,7 +153,7 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
     @Override
     public Result<Void> removeFromPersonalFeed(String user, long mid, String pwd) {
-        sync();
+        //sync();
 
         var preconditionsResult = preconditions.removeFromPersonalFeed(user, mid, pwd);
         if( ! preconditionsResult.isOK() )
@@ -175,8 +173,7 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
     @Override
     public Result<Void> subUser(String user, String userSub, String pwd) {
-        sync();
-
+        //sync();
         var preconditionsResult = preconditions.subUser(user, userSub, pwd);
         if( ! preconditionsResult.isOK() )
             return preconditionsResult;
@@ -186,7 +183,7 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
     @Override
     public Result<Void> unsubscribeUser(String user, String userSub, String pwd) {
-        sync();
+        //sync();
 
         var preconditionsResult = preconditions.unsubscribeUser(user, userSub, pwd);
         if( ! preconditionsResult.isOK() )
@@ -197,7 +194,7 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
     @Override
     public Result<Void> deleteUserFeed(String user) {
-        sync();
+        //sync();
 
         var preconditionsResult = preconditions.deleteUserFeed(user);
         if( ! preconditionsResult.isOK() )
