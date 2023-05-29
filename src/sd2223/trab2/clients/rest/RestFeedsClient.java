@@ -29,7 +29,8 @@ public class RestFeedsClient extends RestClient implements Feeds {
 
 
 	}
-	
+
+
 	@Override
 	public Result<Void> deleteUserFeed(String user) {
 		return super.reTry(() -> clt_deleteUserFeed(user));
@@ -74,6 +75,7 @@ public class RestFeedsClient extends RestClient implements Feeds {
 	private Result<Message> clt_getMessage(String user, long mid) {
 		Response r = target.path(user).path( Long.toString(mid) )
 				.request()
+
 				.get();
 
 		return super.toJavaResult(r, Message.class);

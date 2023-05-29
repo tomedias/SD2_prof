@@ -35,7 +35,17 @@ public class SoapFeedsClient<T extends FeedsService> extends SoapClient implemen
 		}
 		return stub;
 	}
-	
+
+	@Override
+	public void setVersion(long version) {
+
+	}
+
+	@Override
+	public long getVersion() {
+		return 0;
+	}
+
 	@Override
 	public Result<Void> removeFromPersonalFeed(String user, long mid, String pwd) {
 		return super.reTry( () -> super.toJavaResult( () -> stub().removeFromPersonalFeed(user, mid, pwd)) );
