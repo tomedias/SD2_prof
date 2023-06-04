@@ -21,6 +21,7 @@ import sd2223.trab2.api.User;
 import sd2223.trab2.api.java.Feeds;
 import sd2223.trab2.api.java.Result;
 import sd2223.trab2.api.java.Result.ErrorCode;
+import sd2223.trab2.servers.Domain;
 import sd2223.trab2.servers.java.JavaFeedsCommon.FeedUser;
 
 public abstract class JavaFeedsPreconditions implements Feeds {
@@ -118,7 +119,10 @@ public abstract class JavaFeedsPreconditions implements Feeds {
 	}
 
 	@Override
-	public Result<Void> deleteUserFeed(String user) {
+	public Result<Void> deleteUserFeed(String user,String secret) {
+		if(!secret.equals(Domain.getSecret())){
+			return error(FORBIDDEN);
+		}
 		if( user == null )
 			return error(BAD_REQUEST);
 				

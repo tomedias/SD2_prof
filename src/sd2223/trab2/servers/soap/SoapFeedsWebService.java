@@ -51,7 +51,7 @@ public class SoapFeedsWebService<T extends Feeds> extends SoapWebService<FeedsEx
 	}
 
 	@Override
-	public void deleteUserFeed(String user) throws FeedsException {
-		super.fromJavaResult( impl.deleteUserFeed(user));
+	public void deleteUserFeed(String user,String secret) throws FeedsException {
+		super.fromJavaResult( impl.deleteUserFeed(user,secret));
 	}
 }

@@ -2,6 +2,7 @@ package sd2223.trab2.api.java;
 
 import java.util.List;
 
+import jakarta.ws.rs.QueryParam;
 import sd2223.trab2.api.Message;
 
 public interface Feeds {
@@ -21,6 +22,6 @@ public interface Feeds {
 
 	Result<List<String>> listSubs(String user);
 
-	Result<Void> deleteUserFeed(String user);
+	Result<Void> deleteUserFeed(String user,String secret);
 
 }

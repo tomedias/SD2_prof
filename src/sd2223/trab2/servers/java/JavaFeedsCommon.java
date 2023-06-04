@@ -128,9 +128,9 @@ public abstract class JavaFeedsCommon<T extends Feeds>  implements Feeds {
 	}
 	
 	@Override
-	public Result<Void> deleteUserFeed(String user) {
+	public Result<Void> deleteUserFeed(String user,String secret) {
 		
-		var preconditionsResult = preconditions.deleteUserFeed(user);
+		var preconditionsResult = preconditions.deleteUserFeed(user,secret);
 		if( ! preconditionsResult.isOK() )
 			return preconditionsResult;
 

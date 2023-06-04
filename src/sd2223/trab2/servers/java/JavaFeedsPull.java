@@ -35,7 +35,7 @@ public class JavaFeedsPull extends JavaFeedsCommon<FeedsPull> implements FeedsPu
 			}).build(new CacheLoader<>() {
 				@Override
 				public Result<List<Message>> load(FeedInfoKey info) throws Exception {
-					var res = FeedsPullClients.get(info.domain()).pull_getTimeFilteredPersonalFeed(info.user(), info.time());
+					var res = FeedsPullClients.get(info.domain()).pull_getTimeFilteredPersonalFeed(info.user(), info.time(),Domain.getSecret());
 					if (res.error() == TIMEOUT)
 						return error(BAD_REQUEST);
 
@@ -89,9 +89,9 @@ public class JavaFeedsPull extends JavaFeedsCommon<FeedsPull> implements FeedsPu
 		}
 	}
 	
-	public Result<List<Message>> pull_getTimeFilteredPersonalFeed(String user, long time) {
+	public Result<List<Message>> pull_getTimeFilteredPersonalFeed(String user, long time,String secret) {
 		
-		var preconditionsResult = preconditions.pull_getTimeFilteredPersonalFeed(user, time);
+		var preconditionsResult = preconditions.pull_getTimeFilteredPersonalFeed(user, time,secret);
 		if( ! preconditionsResult.isOK() )
 			return preconditionsResult;
 
@@ -111,7 +111,7 @@ public class JavaFeedsPull extends JavaFeedsCommon<FeedsPull> implements FeedsPu
 	}
 	
 	@Override
-	protected void deleteFromUserFeed( String user, Set<Long> mids ) {
+	protected void deleteFromUserFeed( String user, Set<Long> mids) {
 		messages.keySet().removeAll( mids );
 	}
 

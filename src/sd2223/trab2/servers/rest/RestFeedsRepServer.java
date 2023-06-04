@@ -4,6 +4,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import sd2223.trab2.api.java.Feeds;
 import sd2223.trab2.servers.Domain;
 import utils.Args;
+import utils.IP;
 
 import java.util.logging.Logger;
 
@@ -25,6 +26,8 @@ public class RestFeedsRepServer extends AbstractRestServer{
     public static void main(String[] args) {
         Args.use( args );
         Domain.set( args[0], Long.valueOf(args[1]));
+        Domain.setSecret(args[2]);
+        IP.setUri(String.format(SERVER_BASE_URI, IP.hostName(), PORT, "/rest"));
         new RestFeedsRepServer().start(PORT);
     }
 }

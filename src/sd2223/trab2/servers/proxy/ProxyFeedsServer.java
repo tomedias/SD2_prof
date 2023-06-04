@@ -24,6 +24,7 @@ public class ProxyFeedsServer extends AbstractRestServer{
     public static void main(String[] args) {
         Args.use( args );
         Domain.set( args[0], Long.valueOf(args[1]));
+        Domain.setSecret(args[2]);
         new ProxyFeedsServer().start(PORT);
     }
 }

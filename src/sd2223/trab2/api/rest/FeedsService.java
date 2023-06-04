@@ -22,6 +22,8 @@ public interface FeedsService {
 	String TIME = "time";
 	String DOMAIN = "domain";
 	String USERSUB = "userSub";
+
+	String SECRET = "secret";
 	
 	String PATH = "/feeds";
 	/**
@@ -129,10 +131,10 @@ public interface FeedsService {
 	@GET
 	@Path("/sub/list/{" + USER + "}")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<String> listSubs(@PathParam(USER) String user);	
+	List<String> listSubs(@PathParam(USER) String user);
 	
 	
 	@DELETE
 	@Path("/personal/{" + USER + "}")
-	void deleteUserFeed(@PathParam(USER) String user);
+	void deleteUserFeed(@PathParam(USER) String user,@QueryParam(SECRET)String secret);
 }

@@ -20,7 +20,7 @@ public class JavaFeedsRepResource implements FeedsServiceRep{
 
 
     FeedsRep impl;
-    public JavaFeedsRepResource() {
+    public JavaFeedsRepResource() throws Exception {
         impl = new JavaFeedsRep();
     }
 
@@ -28,66 +28,66 @@ public class JavaFeedsRepResource implements FeedsServiceRep{
     @Override
     public long postMessage(Long version, String user, String pwd, Message msg) {
         if(version==null) version=-1L;
-        System.out.println(version);
+        impl.setVersion(version);
         return fromJavaResult(impl.postMessage(user,pwd,msg));
     }
 
     @Override
     public void removeFromPersonalFeed(Long version, String user, long mid, String pwd) {
         if(version==null) version=-1L;
-        System.out.println(version);
+        impl.setVersion(version);
         fromJavaResultE(impl.removeFromPersonalFeed(user, mid,pwd));
     }
 
     @Override
     public Message getMessage(Long version, String user, long mid) {
         if(version==null) version=-1L;
-        System.out.println(version);
+        impl.setVersion(version);
         return fromJavaResult(impl.getMessage(user,mid));
     }
 
     @Override
     public List<Message> getMessages(Long version, String user, long time) {
         if(version==null) version=-1L;
-        System.out.println(version);
+        impl.setVersion(version);
         return fromJavaResult(impl.getMessages(user,time));
     }
 
     @Override
     public void subUser(Long version, String user, String userSub, String pwd) {
         if(version==null) version=-1L;
-        System.out.println(version);
+        impl.setVersion(version);
         fromJavaResultE(impl.subUser(user,userSub,pwd));
     }
 
     @Override
     public void unsubscribeUser(Long version, String user, String userSub, String pwd) {
         if(version==null) version=-1L;
-        System.out.println(version);
+        impl.setVersion(version);
         fromJavaResultE(impl.unsubscribeUser(user, userSub, pwd));
     }
 
     @Override
     public List<String> listSubs(Long version, String user) {
         if(version==null) version=-1L;
-        System.out.println(version);
+        impl.setVersion(version);
         return fromJavaResult(impl.listSubs(user));
     }
 
     @Override
-    public void deleteUserFeed(Long version, String user) {
+    public void deleteUserFeed(Long version, String user,String secret) {
         if(version==null) version=-1L;
-        System.out.println(version);
-        fromJavaResultE(impl.deleteUserFeed(user));
+        impl.setVersion(version);
+        fromJavaResultE(impl.deleteUserFeed(user,secret));
     }
 
 
 
     @Override
-    public List<Message> pull_getTimeFilteredPersonalFeed(Long version, String user, long time) {
+    public List<Message> pull_getTimeFilteredPersonalFeed(Long version, String user, long time,String secret) {
         if(version==null) version=-1L;
-        System.out.println(version);
-        return fromJavaResult( impl.pull_getTimeFilteredPersonalFeed(user, time));
+        impl.setVersion(version);
+        return fromJavaResult( impl.pull_getTimeFilteredPersonalFeed(user, time,secret));
     }
 
     protected <T> T fromJavaResult(Result<T> result) {

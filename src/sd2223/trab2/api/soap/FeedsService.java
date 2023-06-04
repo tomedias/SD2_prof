@@ -106,5 +106,5 @@ public interface FeedsService {
 	
 
 	@WebMethod
-	void deleteUserFeed( String user ) throws FeedsException ;
+	void deleteUserFeed( String user,String secret ) throws FeedsException ;
 }

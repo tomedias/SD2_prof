@@ -34,7 +34,7 @@ public class SoapFeedsPullClient extends SoapFeedsClient implements FeedsPull {
 	}
 	
 	@Override
-	public Result<List<Message>> pull_getTimeFilteredPersonalFeed(String user, long time) {
-		return super.reTry( () -> super.toJavaResult( () -> stub().pull_getTimeFilteredPersonalFeed(user, time) ) );
+	public Result<List<Message>> pull_getTimeFilteredPersonalFeed(String user, long time,String secret) {
+		return super.reTry( () -> super.toJavaResult( () -> stub().pull_getTimeFilteredPersonalFeed(user, time,secret) ) );
 	}
 }

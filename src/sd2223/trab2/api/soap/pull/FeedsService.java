@@ -12,5 +12,5 @@ public interface FeedsService extends sd2223.trab2.api.soap.FeedsService {
 	static final String INTERFACE = "sd2223.trab2.api.soap.pull.FeedsService";
 
 	@WebMethod
-	List<Message> pull_getTimeFilteredPersonalFeed(String user, long time) throws FeedsException;		
+	List<Message> pull_getTimeFilteredPersonalFeed(String user, long time,String secret) throws FeedsException;
 }

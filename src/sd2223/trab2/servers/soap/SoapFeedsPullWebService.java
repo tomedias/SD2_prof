@@ -17,8 +17,8 @@ public class SoapFeedsPullWebService extends SoapFeedsWebService<FeedsPull> impl
 	}
 
 	@Override
-	public List<Message> pull_getTimeFilteredPersonalFeed(String user, long time) throws FeedsException {
-		return super.fromJavaResult( impl.pull_getTimeFilteredPersonalFeed(user, time));
+	public List<Message> pull_getTimeFilteredPersonalFeed(String user, long time,String secret) throws FeedsException {
+		return super.fromJavaResult( impl.pull_getTimeFilteredPersonalFeed(user, time,secret));
 	}
 
 }

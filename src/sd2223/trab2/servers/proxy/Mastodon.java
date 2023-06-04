@@ -4,6 +4,8 @@ import com.google.gson.reflect.TypeToken;
 import sd2223.trab2.api.Message;
 import sd2223.trab2.api.java.Feeds;
 import sd2223.trab2.api.java.Result;
+import sd2223.trab2.servers.java.JavaFeedsPreProxy;
+import sd2223.trab2.servers.java.JavaFeedsPullPreconditions;
 import sd2223.trab2.servers.proxy.msgs.MastodonAccount;
 import sd2223.trab2.servers.proxy.msgs.PostStatusArgs;
 import sd2223.trab2.servers.proxy.msgs.PostStatusResult;
@@ -49,6 +51,8 @@ public class Mastodon implements Feeds {
     protected OAuth20Service service;
     protected OAuth2AccessToken accessToken;
 
+    JavaFeedsPreProxy preconditions;
+
     private static Mastodon impl;
 
     protected Mastodon() {
@@ -59,6 +63,7 @@ public class Mastodon implements Feeds {
             x.printStackTrace();
             System.exit(0);
         }
+        preconditions = new JavaFeedsPreProxy();
     }
 
     synchronized public static Mastodon getInstance() {
@@ -74,6 +79,9 @@ public class Mastodon implements Feeds {
 
     @Override
     public Result<Long> postMessage(String user, String pwd, Message msg) {
+        var preconditionsResult = preconditions.postMessage(user, pwd, msg);
+        if( ! preconditionsResult.isOK() )
+            return preconditionsResult;
         try {
             final OAuthRequest request = new OAuthRequest(Verb.POST, getEndpoint(STATUSES_PATH));
 
@@ -96,6 +104,9 @@ public class Mastodon implements Feeds {
 
     @Override
     public Result<List<Message>> getMessages(String user, long time) {
+        var preconditionsResult = preconditions.getMessages(user,time);
+        if( ! preconditionsResult.isOK() )
+            return preconditionsResult;
         try {
             final OAuthRequest request = new OAuthRequest(Verb.GET, getEndpoint(TIMELINES_PATH));
 
@@ -118,6 +129,9 @@ public class Mastodon implements Feeds {
 
     @Override
     public Result<Void> removeFromPersonalFeed(String user, long mid, String pwd) {
+        var preconditionsResult = preconditions.removeFromPersonalFeed(user,mid,pwd);
+        if( ! preconditionsResult.isOK() )
+            return preconditionsResult;
         try {
             final OAuthRequest request = new OAuthRequest(Verb.DELETE, getEndpoint(STATUSES_PATH_ID,mid));
 
@@ -136,6 +150,9 @@ public class Mastodon implements Feeds {
 
     @Override
     public Result<Message> getMessage(String user, long mid) {
+        var preconditionsResult = preconditions.getMessage(user,mid);
+        if( ! preconditionsResult.isOK() )
+            return preconditionsResult;
         try {
             final OAuthRequest request = new OAuthRequest(Verb.GET, getEndpoint(STATUSES_PATH_ID,mid));
 
@@ -159,6 +176,10 @@ public class Mastodon implements Feeds {
     @Override
     public Result<Void> subUser(String user, String userSub, String pwd) {
         String id = searchUser(userSub);
+        var preconditionsResult = preconditions.subUser(user,searchUser(id),pwd);
+        if( ! preconditionsResult.isOK() )
+            return preconditionsResult;
+
         try {
             final OAuthRequest request = new OAuthRequest(Verb.POST, getEndpoint(ACCOUNT_FOLLOW_PATH,id));
 
@@ -177,7 +198,10 @@ public class Mastodon implements Feeds {
     @Override
     public Result<Void> unsubscribeUser(String user, String userSub, String pwd) {
         String id = searchUser(userSub);
-        System.out.println(id);
+        var preconditionsResult = preconditions.subUser(user,searchUser(id),pwd);
+        if(! preconditionsResult.isOK() )
+            return preconditionsResult;
+
         try {
             final OAuthRequest request = new OAuthRequest(Verb.POST, getEndpoint(ACCOUNT_UNFOLLOW_PATH,id));
             service.signRequest(accessToken, request);
@@ -193,6 +217,9 @@ public class Mastodon implements Feeds {
 
     @Override
     public Result<List<String>> listSubs(String user) {
+        var preconditionsResult = preconditions.listSubs(user);
+        if(! preconditionsResult.isOK() )
+            return preconditionsResult;
         String id = searchUser(user);
         try {
             final OAuthRequest request = new OAuthRequest(Verb.GET, getEndpoint(ACCOUNT_FOLLOWING_PATH,id));
@@ -214,7 +241,7 @@ public class Mastodon implements Feeds {
     }
 
     @Override
-    public Result<Void> deleteUserFeed(String user) {
+    public Result<Void> deleteUserFeed(String user,String secret) {
         //not to be implemented since never called by the users api. (deleting account automatically deletes the feed :) )
         return error(NOT_IMPLEMENTED);
     }
@@ -236,6 +263,6 @@ public class Mastodon implements Feeds {
         } catch (Exception x) {
             x.printStackTrace();
         }
-        return "";
+        return null;
     }
 }

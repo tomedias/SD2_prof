@@ -19,6 +19,8 @@ public interface FeedsServiceRep {
     String PATH = "/feeds";
 
     String HEADER_VERSION = "X-FEEDS";
+
+    String SECRET = "secret";
     /**
      * Posts a new message in the feed, associating it to the feed of the specific user.
      * A message should be identified before publish it, by assigning an ID.
@@ -129,10 +131,10 @@ public interface FeedsServiceRep {
 
     @DELETE
     @Path("/personal/{" + USER + "}")
-    void deleteUserFeed(@HeaderParam(FeedsServiceRep.HEADER_VERSION) Long version,@PathParam(USER) String user);
+    void deleteUserFeed(@HeaderParam(FeedsServiceRep.HEADER_VERSION) Long version,@PathParam(USER) String user,@QueryParam(SECRET)String secret);
 
     @GET
     @Path("/personal/{" + USER + "}")
     @Produces(MediaType.APPLICATION_JSON)
-    List<Message> pull_getTimeFilteredPersonalFeed(@HeaderParam(FeedsServiceRep.HEADER_VERSION) Long version, @PathParam(USER) String user, @QueryParam(TIME) long time);
+    List<Message> pull_getTimeFilteredPersonalFeed(@HeaderParam(FeedsServiceRep.HEADER_VERSION) Long version, @PathParam(USER) String user, @QueryParam(TIME) long time,@QueryParam(SECRET)String secret);
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import sd2223.trab2.api.Message;
 import sd2223.trab2.api.java.FeedsPull;
 import sd2223.trab2.api.java.Result;
+import sd2223.trab2.servers.Domain;
 import sd2223.trab2.servers.java.JavaFeedsCommon.FeedUser;
 
 public class JavaFeedsPullPreconditions extends JavaFeedsPreconditions implements FeedsPull {
@@ -42,7 +43,10 @@ public class JavaFeedsPullPreconditions extends JavaFeedsPreconditions implement
 	}
 
 	@Override
-	public Result<List<Message>> pull_getTimeFilteredPersonalFeed(String user, long time) {
+	public Result<List<Message>> pull_getTimeFilteredPersonalFeed(String user, long time,String secret) {
+		if(!secret.equals(Domain.getSecret())){
+			return error(FORBIDDEN);
+		}
 		if (user == null)
 			return error(BAD_REQUEST);
 

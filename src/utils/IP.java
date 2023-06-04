@@ -1,9 +1,12 @@
 package utils;
 
 import java.net.InetAddress;
+import java.net.URI;
 import java.net.UnknownHostException;
 
 public class IP {
+
+	private static String URI;
 
 	public static String hostAddress() {
 		try {
@@ -18,5 +21,13 @@ public class IP {
 		} catch (UnknownHostException e) {
 			return "?.?.?.?";
 		}
+	}
+
+	public static void setUri(String uri) {
+		URI = uri;
+
+	}
+	public static String getUri() {
+		return URI;
 	}
 }

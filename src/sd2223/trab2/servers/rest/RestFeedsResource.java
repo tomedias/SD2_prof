@@ -51,7 +51,7 @@ public abstract class RestFeedsResource<T extends Feeds> extends RestResource im
 	}
 
 	@Override
-	public void deleteUserFeed(String user) {
-		super.fromJavaResult( impl.deleteUserFeed(user));
+	public void deleteUserFeed(String user,String secret) {
+		super.fromJavaResult( impl.deleteUserFeed(user,secret));
 	}
 }

@@ -3,12 +3,22 @@ package sd2223.trab2.servers;
 public class Domain {
 	static String domain;
 	static long uuid;
+
+	static String secret;
 	
 	public  static void set( String _domain, long _uuid) {
 		domain = _domain;
 		uuid = _uuid;
 	}
-	
+
+	public static String getSecret() {
+		return secret;
+	}
+
+	public static void setSecret(String secret) {
+		Domain.secret = secret;
+	}
+
 	public static String get() {
 		return domain;
 	}

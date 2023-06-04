@@ -18,6 +18,7 @@ public class SoapUsersServer extends AbstractSoapServer<SoapUsersWebService> {
 
 	public static void main(String[] args) throws Exception {		
 		Domain.set( args[0], 0);
+		Domain.setSecret(args[2]);
 		Log.setLevel(Level.INFO);
 		new SoapUsersServer().start(PORT);
 	}

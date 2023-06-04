@@ -9,6 +9,7 @@ import sd2223.trab2.api.Message;
 import sd2223.trab2.api.java.FeedsPull;
 import sd2223.trab2.api.java.Result;
 import sd2223.trab2.api.rest.FeedsService;
+import sd2223.trab2.servers.Domain;
 import sd2223.trab2.tls.InsecureHostnameVerifier;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -22,13 +23,14 @@ public class RestFeedsPullClient extends RestFeedsClient implements FeedsPull {
 	}
 
 	@Override
-	public Result<List<Message>> pull_getTimeFilteredPersonalFeed(String user, long time) {
-		return super.reTry(() -> clt_getTimeFilteredPersonalFeed(user, time));
+	public Result<List<Message>> pull_getTimeFilteredPersonalFeed(String user, long time,String secret) {
+		return super.reTry(() -> clt_getTimeFilteredPersonalFeed(user, time,secret));
 	}
 	
-	public Result<List<Message>> clt_getTimeFilteredPersonalFeed(String user, long time) {
+	public Result<List<Message>> clt_getTimeFilteredPersonalFeed(String user, long time,String secret) {
 		Response r = target.path(PERSONAL).path( user )
 				.queryParam(FeedsService.TIME, time)
+				.queryParam(FeedsService.SECRET, secret)
 				.request()
 				.accept(MediaType.APPLICATION_JSON)
 				.get();

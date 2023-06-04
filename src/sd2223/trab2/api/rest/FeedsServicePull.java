@@ -15,5 +15,5 @@ public interface FeedsServicePull extends FeedsService {
 	@GET
 	@Path("/personal/{" + USER + "}")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<Message> pull_getTimeFilteredPersonalFeed(@PathParam(USER) String user, @QueryParam(TIME) long time);
+	List<Message> pull_getTimeFilteredPersonalFeed(@PathParam(USER) String user, @QueryParam(TIME) long time,@QueryParam(SECRET)String secret);
 }

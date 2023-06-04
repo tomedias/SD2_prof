@@ -16,8 +16,8 @@ public class RestFeedsPullResource extends RestFeedsResource<FeedsPull> implemen
 	}
 
 	@Override
-	public List<Message> pull_getTimeFilteredPersonalFeed(String user, long time) {
-		return super.fromJavaResult( impl.pull_getTimeFilteredPersonalFeed(user, time));
+	public List<Message> pull_getTimeFilteredPersonalFeed(String user, long time,String secret) {
+		return super.fromJavaResult( impl.pull_getTimeFilteredPersonalFeed(user, time,secret));
 	}
 
 }

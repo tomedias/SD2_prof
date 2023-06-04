@@ -1,5 +1,9 @@
 package sd2223.trab2.servers.java;
 
+import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
+import org.slf4j.LoggerFactory;
 import sd2223.trab2.api.Message;
 import sd2223.trab2.api.java.FeedsRep;
 import sd2223.trab2.api.java.Result;
@@ -17,14 +21,18 @@ import static sd2223.trab2.api.java.Result.ok;
 
 public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
+
     static final String TOPIC = Domain.get();
 
     static final String KAFKA_BROKERS = "kafka:9092"; // When running in docker container...
     private static final String FROM_BEGINNING = "earliest";;
+    public static final String POST_MESSAGE = "postMessage";
+    public static final String REMOVE_FROM_PERSONAL_FEED = "removeFromPersonalFeed";
+    public static final String SUB_USER = "subUser";
+    public static final String UNSUBSCRIBE_USER = "unsubscribeUser";
+    public static final String DELETE_USER_FEED = "deleteUserFeed";
 
     final KafkaPublisher publisher;
-
-
 
     final SyncPoint<String> sync;
 
@@ -33,11 +41,11 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
     private final String replicaID;
 
 
-
-
-
-    public JavaFeedsRep(){
+    public JavaFeedsRep()  {
         super();
+        org.slf4j.Logger kafkaLogger = LoggerFactory.getLogger("org.apache.kafka");
+        ((ch.qos.logback.classic.Logger)kafkaLogger).setLevel(ch.qos.logback.classic.Level.OFF);
+        //startZookeeper();
         this.replicaID = IP.hostName().split("-")[0].replaceFirst("feeds","");
         publisher = KafkaPublisher.createPublisher(KAFKA_BROKERS);
         this.sync = new SyncPoint<>();
@@ -46,27 +54,19 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
         sync();
     }
 
-    private void sleep( int ms ) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
     public void sync(){
         sync.waitForVersion(version,Integer.MAX_VALUE);
-
     }
     public void startKafka(){
         KafkaSubscriber subscriber = KafkaSubscriber.createSubscriber(JavaFeedsRep.KAFKA_BROKERS, List.of(JavaFeedsRep.TOPIC), JavaFeedsRep.FROM_BEGINNING);
         subscriber.start(false, (r) -> {
             String[] command = r.value().split(" ");
             switch (command[0]) {
-                case "postMessage" -> __PostMessage(command[1], JSON.decode(command[3], Message.class));
-                case "removeFromPersonalFeed" -> __RemoveFromPersonalFeed(command[1], Long.parseLong(command[2]));
-                case "subUser" -> __SubUser(command[1], command[2]);
-                case "unsubscribeUser" -> __UnsubscribeUser(command[1], command[2]);
-                case "deleteUserFeed" -> __DeleteUserFeed(command[1]);
+                case POST_MESSAGE -> __PostMessage(command[1], JSON.decode(command[3], Message.class));
+                case REMOVE_FROM_PERSONAL_FEED -> __RemoveFromPersonalFeed(command[1], Long.parseLong(command[2]));
+                case SUB_USER -> __SubUser(command[1], command[2]);
+                case UNSUBSCRIBE_USER -> __UnsubscribeUser(command[1], command[2]);
+                case DELETE_USER_FEED -> __DeleteUserFeed(command[1]);
                 default -> System.out.println(r.value());
             }
             sync.setVersion(r.offset());
@@ -82,9 +82,7 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
     private long send(String msg) {
         long offset = publisher.publish(TOPIC,replicaID, msg);
-        if (offset >= 0)
-            System.out.println("Message published with sequence number: " + msg);
-        else
+        if (offset < 0)
             System.err.println("Failed to publish message");
         return offset;
 
@@ -92,54 +90,40 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
     @Override
     protected List<Message> getTimeFilteredPersonalFeed(String user, long time) {
-        sync();
-        System.out.println("Get time filtered personal feed");
-
         return super.getTimeFilteredPersonalFeed(user, time);
     }
 
     @Override
     public Result<List<String>> listSubs(String user) {
-        sync();
-        System.out.println("Listing subs");
-
-        return super.listSubs(user);
+            return super.listSubs(user);
     }
 
     @Override
     public Result<Message> getMessage(String user, long mid) {
-
         sync();
-        System.out.println("Get Message");
         return super.getMessage(user, mid);
     }
 
     @Override
     public Result<List<Message>> getMessages(String user, long time) {
         sync();
-        System.out.println("Getting messages");
-
         return super.getMessages(user, time);
     }
 
     @Override
-    public Result<List<Message>> pull_getTimeFilteredPersonalFeed(String user, long time) {
+    public Result<List<Message>> pull_getTimeFilteredPersonalFeed(String user, long time,String secret) {
         sync();
-        System.out.println("pull_getTimeFilteredPersonalFeed");
-        return super.pull_getTimeFilteredPersonalFeed(user, time);
+        return super.pull_getTimeFilteredPersonalFeed(user, time,secret);
     }
 
     @Override
     protected void deleteFromUserFeed(String user, Set<Long> mids) {
         sync();
-        System.out.println("Deleting from user feed");
-
         super.deleteFromUserFeed(user, mids);
     }
 
     @Override
     public Result<Long> postMessage(String user, String pwd, Message msg) {
-        //sync();
         var preconditionsResult = preconditions.postMessage(user, pwd,msg);
         if( ! preconditionsResult.isOK() )
             return preconditionsResult;
@@ -153,8 +137,6 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
     @Override
     public Result<Void> removeFromPersonalFeed(String user, long mid, String pwd) {
-        //sync();
-
         var preconditionsResult = preconditions.removeFromPersonalFeed(user, mid, pwd);
         if( ! preconditionsResult.isOK() )
             return preconditionsResult;
@@ -173,7 +155,6 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
     @Override
     public Result<Void> subUser(String user, String userSub, String pwd) {
-        //sync();
         var preconditionsResult = preconditions.subUser(user, userSub, pwd);
         if( ! preconditionsResult.isOK() )
             return preconditionsResult;
@@ -183,8 +164,6 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
 
     @Override
     public Result<Void> unsubscribeUser(String user, String userSub, String pwd) {
-        //sync();
-
         var preconditionsResult = preconditions.unsubscribeUser(user, userSub, pwd);
         if( ! preconditionsResult.isOK() )
             return preconditionsResult;
@@ -193,10 +172,8 @@ public class JavaFeedsRep extends JavaFeedsPull implements FeedsRep {
     }
 
     @Override
-    public Result<Void> deleteUserFeed(String user) {
-        //sync();
-
-        var preconditionsResult = preconditions.deleteUserFeed(user);
+    public Result<Void> deleteUserFeed(String user,String secret) {
+        var preconditionsResult = preconditions.deleteUserFeed(user,secret);
         if( ! preconditionsResult.isOK() )
             return preconditionsResult;
         if(feeds.get(user) == null)

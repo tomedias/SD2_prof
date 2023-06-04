@@ -12,6 +12,7 @@ import sd2223.trab2.api.Message;
 import sd2223.trab2.api.java.Feeds;
 import sd2223.trab2.api.java.Result;
 import sd2223.trab2.api.rest.FeedsService;
+import sd2223.trab2.servers.Domain;
 import sd2223.trab2.tls.InsecureHostnameVerifier;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -32,8 +33,8 @@ public class RestFeedsClient extends RestClient implements Feeds {
 
 
 	@Override
-	public Result<Void> deleteUserFeed(String user) {
-		return super.reTry(() -> clt_deleteUserFeed(user));
+	public Result<Void> deleteUserFeed(String user,String secret) {
+		return super.reTry(() -> clt_deleteUserFeed(user,secret));
 	}
 
 	@Override
@@ -90,8 +91,9 @@ public class RestFeedsClient extends RestClient implements Feeds {
 		return super.toJavaResult(r, new GenericType<List<Message>>() {});
 	}
 	
-	public Result<Void> clt_deleteUserFeed(String user) {
+	public Result<Void> clt_deleteUserFeed(String user,String secret) {
 		Response r = target.path(PERSONAL).path( user )
+				.queryParam(FeedsService.SECRET, secret)
 				.request()
 				.delete();
 
